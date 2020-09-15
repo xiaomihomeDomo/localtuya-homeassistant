@@ -76,7 +76,7 @@ async def validate_input(hass: core.HomeAssistant, data):
         data[CONF_DEVICE_ID], data[CONF_HOST], data[CONF_LOCAL_KEY]
     )
     pytuyadevice.set_version(float(data[CONF_PROTOCOL_VERSION]))
-    pytuyadevice.set_dpsUsed({})
+    pytuyadevice.set_dpsUsed({str(dps): None for dps in range(1, 151)})
     try:
         data = await hass.async_add_executor_job(pytuyadevice.status)
     except (ConnectionRefusedError, ConnectionResetError):
