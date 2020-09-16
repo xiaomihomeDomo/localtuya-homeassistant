@@ -89,6 +89,19 @@ class LocaltuyaFan(FanEntity):
         self._oscillating = False
 
     @property
+    def device_info(self):
+        return {
+            "identifiers": {
+                # Serial numbers are unique identifiers within a specific domain
+                ("LocalTuya", f"local_{self._device.unique_id}")
+            },
+            "name": self.name,
+            "manufacturer": "Tuya generic",
+            "model": "SmartFan",
+            "sw_version": "3.3",
+        }
+
+    @property
     def oscillating(self):
         """Return current oscillating status."""
         # if self._speed == STATE_OFF:
